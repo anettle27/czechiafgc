@@ -63,8 +63,7 @@
         <div class="stats">
           <div class="stat"><strong>190+</strong><span>countries competing</span></div>
           <div class="stat"><strong>1</strong><span>team per country</span></div>
-          <div class="stat"><strong>9</strong><span>students built our robot</span></div>
-          <div class="stat"><strong>5</strong><span>travelling to Incheon</span></div>
+          <div class="stat"><strong>10</strong><span>students on Team Czechia</span></div>
         </div>
       </div>
     </section>
@@ -80,7 +79,7 @@
           <article class="card fire">
             <h3>Robots against wildfire</h3>
             <p>The 2026 theme, "Igniting Innovation", asks teams to build robots around wildfire prevention, mitigation and recovery. Every alliance plays the same game, so the difference comes down to design, strategy and teamwork.</p>
-            <p>Our nine-person team has spent the season designing, building and programming the robot. Five of us are now taking it to Korea to see how it stacks up against the world.</p>
+            <p>Our ten-student team has spent the season designing, building and programming the robot, and now we're taking it to Korea to see how it stacks up against the world.</p>
             <div class="tags"><span>Prevention</span><span>Mitigation</span><span>Recovery</span></div>
           </article>
           <article class="card">
@@ -90,7 +89,7 @@
               <div><dt>Where</dt><dd>Incheon, South Korea</dd></div>
               <div><dt>Theme</dt><dd>Igniting Innovation</dd></div>
               <div><dt>Countries</dt><dd>190+</dd></div>
-              <div><dt>Our team</dt><dd>9 builders · 5 travelling</dd></div>
+              <div><dt>Our team</dt><dd>10 students</dd></div>
             </dl>
           </article>
         </div>
@@ -101,34 +100,59 @@
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow">The team</span>
-          <h2>Nine builders. Five in Incheon.</h2>
-          <p>Nine students worked on this year's robot. These five are carrying the flag in Korea.</p>
+          <h2>Ten students. One robot.</h2>
+          <p>Meet the 2026 team designing, building, programming and driving our robot.</p>
         </div>
         <div class="team">
           <article class="member captain">
-            <div class="avatar" aria-hidden="true">A</div>
+            <div class="avatar" aria-hidden="true">An</div>
             <h3>Aneta</h3>
             <span class="role">Captain · Design</span>
           </article>
+          <article class="member captain">
+            <div class="avatar" aria-hidden="true">Mi</div>
+            <h3>Minjoon</h3>
+            <span class="role">Co-captain · Design</span>
+          </article>
           <article class="member">
-            <div class="avatar" aria-hidden="true">L</div>
+            <div class="avatar" aria-hidden="true">Le</div>
             <h3>Leah</h3>
             <span class="role">Outreach · Media · Coordinator</span>
           </article>
           <article class="member">
-            <div class="avatar" aria-hidden="true">M</div>
+            <div class="avatar" aria-hidden="true">Ma</div>
             <h3>Max</h3>
             <span class="role">Engineer</span>
           </article>
           <article class="member">
-            <div class="avatar" aria-hidden="true">A</div>
+            <div class="avatar" aria-hidden="true">Ai</div>
             <h3>Aiden</h3>
             <span class="role">Driver</span>
           </article>
           <article class="member">
-            <div class="avatar" aria-hidden="true">A</div>
+            <div class="avatar" aria-hidden="true">Am</div>
             <h3>Amos</h3>
             <span class="role">Programmer</span>
+          </article>
+          <article class="member">
+            <div class="avatar" aria-hidden="true">Ta</div>
+            <h3>Tate</h3>
+            <span class="role">Builder</span>
+          </article>
+          <article class="member">
+            <div class="avatar" aria-hidden="true">Ja</div>
+            <h3>James</h3>
+            <span class="role">Builder</span>
+          </article>
+          <article class="member">
+            <div class="avatar" aria-hidden="true">Yo</div>
+            <h3>Yoav</h3>
+            <span class="role">Builder</span>
+          </article>
+          <article class="member">
+            <div class="avatar" aria-hidden="true">Sa</div>
+            <h3>Sami</h3>
+            <span class="role">Builder</span>
           </article>
         </div>
       </div>
@@ -144,6 +168,25 @@
         <div class="cta">
           <a class="btn primary" href="https://www.instagram.com/firstczechia/" target="_blank" rel="noopener">@firstczechia <span aria-hidden="true">↗</span></a>
           <a class="btn ghost" href="https://first.global/fgc/" target="_blank" rel="noopener">first.global <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+    <section id="schedule">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Match schedule</span>
+          <h2>When we play.</h2>
+          <p>Every qualification match, who we're allied with, and when to tune in, in Korean local time and Prague time.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="schedule">
+            <thead>
+              <tr><th scope="col">Match</th><th scope="col">Alliance</th><th scope="col">Korea (KST)</th><th scope="col">Prague (CEST)</th></tr>
+            </thead>
+            <tbody id="schedule-body">
+              <tr><td colspan="4" class="empty">The match schedule will be posted here once it's released.</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -178,6 +221,18 @@
       setTimeout(tick, 1000 - now % 1000);
     }
     tick();
+
+    // Match schedule. Enter times in Korean local time (KST, UTC+9); Prague time is worked out automatically.
+    // Example: { match: "Q12", alliance: ["Japan", "Kenya"], kst: "2026-10-08 10:30" },
+    const matches = [];
+
+    if (matches.length) {
+      const fmt = (date, tz) => date.toLocaleString("en-GB", { timeZone: tz, weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+      document.getElementById("schedule-body").innerHTML = matches.map(m => {
+        const when = new Date(m.kst.replace(" ", "T") + ":00+09:00");
+        return `<tr><td><strong>${m.match}</strong></td><td>Czechia · ${m.alliance.join(" · ")}</td><td>${fmt(when, "Asia/Seoul")}</td><td>${fmt(when, "Europe/Prague")}</td></tr>`;
+      }).join("");
+    }
   </script>
 </body>
 </html>

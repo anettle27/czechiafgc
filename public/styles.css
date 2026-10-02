@@ -64,8 +64,14 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 .eyebrow::before { content: ""; width: 22px; height: 2px; background: currentColor; }
 .hero h1 { font-size: clamp(52px, 11vw, 132px); font-weight: 900; margin: 18px 0 22px; }
 .hero h1 span { display: block; }
+/* Czech flag inside the letters: white over red, blue triangle reaching halfway */
 .hero h1 .czechia {
-  background: linear-gradient(180deg, var(--white) 0 50%, var(--red) 50% 100%);
+  display: inline-block;
+  padding-right: .04em;
+  background:
+    linear-gradient(to top right, var(--blue) 50%, transparent calc(50% + 1px)) top left / 50% 50% no-repeat,
+    linear-gradient(to bottom right, var(--blue) 50%, transparent calc(50% + 1px)) bottom left / 50% 50% no-repeat,
+    linear-gradient(180deg, var(--white) 0 50%, var(--red) 50% 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .hero p.lead { font-size: clamp(18px, 2.2vw, 22px); color: var(--muted); max-width: 640px; margin: 0 0 36px; }
@@ -142,9 +148,18 @@ section + section { border-top: 1px solid var(--line); }
   font: 800 22px var(--display); background: var(--blue); border: 2px solid var(--line);
 }
 .member.captain .avatar { background: var(--red); }
+.avatar { font-size: 20px; }
 .member h3 { font-size: 22px; margin-bottom: 4px; }
 .member .role { color: var(--accent); font-weight: 600; font-size: 14px; }
 .member p { color: var(--muted); font-size: 15px; margin: 12px 0 0; }
+
+/* ---------- Schedule ---------- */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.schedule { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
+.schedule th { text-align: left; padding: 14px 20px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--line); }
+.schedule td { padding: 14px 20px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.schedule tr:last-child td { border-bottom: 0; }
+.schedule td.empty { text-align: center; color: var(--muted); padding: 36px 20px; }
 
 /* ---------- Follow ---------- */
 .follow { text-align: center; }
