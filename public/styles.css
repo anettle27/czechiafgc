@@ -77,6 +77,12 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 .hero p.lead { font-size: clamp(18px, 2.2vw, 22px); color: var(--muted); max-width: 640px; margin: 0 0 36px; }
 .hero p.lead strong { color: var(--text); font-weight: 600; }
 
+/* Home hero: bigger eyebrow, centred title, full-width intro */
+.hero:not(.small) .eyebrow { font-size: clamp(16px, 2vw, 22px); }
+.hero:not(.small) .eyebrow::before { width: 32px; height: 3px; }
+.hero:not(.small) h1 { text-align: center; }
+.hero:not(.small) p.lead { max-width: none; }
+
 .countdown { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
 .countdown div {
   min-width: 92px; padding: 14px 16px 12px; border-radius: 14px;
