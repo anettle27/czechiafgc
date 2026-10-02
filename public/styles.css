@@ -20,6 +20,7 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 64px; }
 body {
   margin: 0;
   background:
@@ -80,7 +81,20 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 /* Home hero: bigger eyebrow, centred title, full-width intro */
 .hero:not(.small) .eyebrow { font-size: clamp(16px, 2vw, 22px); }
 .hero:not(.small) .eyebrow::before { width: 32px; height: 3px; }
-.hero:not(.small) h1 { text-align: center; }
+.hero-title { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.quick-menu { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; text-align: right; }
+.quick-menu a {
+  display: inline-flex; align-items: center; gap: 10px; padding: 6px 0;
+  font: 600 13px var(--body); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color .2s;
+}
+.quick-menu a::after { content: "→"; color: var(--accent); letter-spacing: 0; transition: transform .2s; }
+.quick-menu a:hover { color: var(--text); }
+.quick-menu a:hover::after { transform: translateX(3px); }
+@media (max-width: 760px) {
+  .hero-title { flex-direction: column; align-items: flex-start; gap: 0; }
+  .quick-menu { text-align: left; margin-bottom: 28px; }
+}
 .hero:not(.small) p.lead { max-width: none; }
 
 .countdown { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
