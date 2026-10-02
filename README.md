@@ -8,4 +8,4 @@ Static site for Team Czechia at https://czechiafgc.anetavostra.com. No build ste
 - `public/img/` — team photos (from FIRST Global's team profiles)
 - `wrangler.jsonc` — Cloudflare Worker (static assets) bound to the custom domain
 
-Deploy: `npx wrangler deploy` (needs Node and `npx wrangler login` once)
+Every push to `main` deploys to Cloudflare via GitHub Actions (`.github/workflows/deploy.yml`, needs the `CLOUDFLARE_API_TOKEN` repo secret).
