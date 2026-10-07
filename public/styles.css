@@ -175,10 +175,21 @@ section + section { border-top: 1px solid var(--line); }
 
 /* ---------- Schedule ---------- */
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.schedule { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
+.schedule { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 980px; }
 .schedule th { text-align: left; padding: 14px 20px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--line); }
 .schedule td { padding: 14px 20px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
 .schedule tr:last-child td { border-bottom: 0; }
+.schedule td { white-space: nowrap; }
+.schedule td:nth-child(4), .schedule td:nth-child(5) { white-space: normal; }
+.schedule tr.next td { background: color-mix(in srgb, var(--red) 14%, transparent); }
+.next-tag { margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: var(--red); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }
+.dot.red { background: #FF4D52; }
+.dot.blue { background: #4C8DFF; }
+.watch { color: var(--accent); font-weight: 600; text-decoration: none; }
+.watch:hover { text-decoration: underline; }
+.soon { color: var(--muted); font-size: 14px; }
+.section-head p a { color: var(--text); }
 .schedule td.empty { text-align: center; color: var(--muted); padding: 36px 20px; }
 
 /* ---------- Follow ---------- */

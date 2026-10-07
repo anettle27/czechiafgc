@@ -171,15 +171,15 @@
         <div class="section-head">
           <span class="eyebrow">Match schedule</span>
           <h2>When we play.</h2>
-          <p>Every qualification match, who we're allied with, and when to tune in, in Korean local time and Prague time.</p>
+          <p>All 11 of our ranking matches, who we're allied with, and when to tune in, in Korean local time and Prague time. Times can shift during the event, so check <a href="https://results.first.global/" target="_blank" rel="noopener">results.first.global</a> for the latest.</p>
         </div>
         <div class="table-wrap">
           <table class="schedule">
             <thead>
-              <tr><th scope="col">Match</th><th scope="col">Alliance</th><th scope="col">Korea (KST)</th><th scope="col">Prague (CEST)</th></tr>
+              <tr><th scope="col">Date</th><th scope="col">Match</th><th scope="col">Field</th><th scope="col">Our alliance</th><th scope="col">Opponents</th><th scope="col">Korea (KST)</th><th scope="col">Prague (CEST)</th><th scope="col">Watch</th></tr>
             </thead>
             <tbody id="schedule-body">
-              <tr><td colspan="4" class="empty">The match schedule will be posted here once it's released.</td></tr>
+              <tr><td colspan="8" class="empty">The match schedule will be posted here once it's released.</td></tr>
             </tbody>
           </table>
         </div>
@@ -230,17 +230,66 @@
     }
     tick();
 
-    // Match schedule. Enter times in Korean local time (KST, UTC+9); Prague time is worked out automatically.
-    // Example: { match: "Q12", alliance: ["Japan", "Kenya"], kst: "2026-10-08 10:30" },
-    const matches = [];
+    // Ranking matches from results.first.global. Times are Korean local time (KST, UTC+9);
+    // Prague time is worked out automatically.
+    const matches = [
+      { match: 18,  field: 3, kst: "2026-10-08 11:55", alliance: "red",  with: ["TUR", "GHA"], vs: ["TKM", "ESP", "DEN"] },
+      { match: 42,  field: 3, kst: "2026-10-08 14:00", alliance: "red",  with: ["CAY", "IRI"], vs: ["TPE", "TUN", "GRE"] },
+      { match: 70,  field: 2, kst: "2026-10-08 15:20", alliance: "red",  with: ["CRO", "HAI"], vs: ["KAZ", "SYR", "MRI"] },
+      { match: 101, field: 5, kst: "2026-10-08 16:49", alliance: "red",  with: ["EGY", "GER"], vs: ["PHI", "CAF", "EST"] },
+      { match: 134, field: 4, kst: "2026-10-09 09:47", alliance: "blue", with: ["BUR", "ETH"], vs: ["MGL", "PAN", "NIG"] },
+      { match: 159, field: 3, kst: "2026-10-09 10:51", alliance: "blue", with: ["USA", "GBR"], vs: ["MNE", "TGA", "ARU"] },
+      { match: 191, field: 5, kst: "2026-10-09 12:30", alliance: "blue", with: ["NGR", "SEY"], vs: ["LCA", "CHN", "UZB"] },
+      { match: 221, field: 5, kst: "2026-10-09 14:48", alliance: "red",  with: ["CPV", "RSA"], vs: ["BHU", "NEP", "DOM"] },
+      { match: 250, field: 2, kst: "2026-10-09 16:18", alliance: "red",  with: ["ITA", "PER"], vs: ["GBS", "TJK", "MDA"] },
+      { match: 301, field: 1, kst: "2026-10-10 10:43", alliance: "blue", with: ["CHI", "BIZ"], vs: ["JAM", "AUT", "LAT"] },
+      { match: 319, field: 1, kst: "2026-10-10 11:31", alliance: "blue", with: ["FSM", "KOR"], vs: ["UGA", "SRB", "COM"] },
+    ];
 
-    if (matches.length) {
-      const fmt = (date, tz) => date.toLocaleString("en-GB", { timeZone: tz, weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
-      document.getElementById("schedule-body").innerHTML = matches.map(m => {
-        const when = new Date(m.kst.replace(" ", "T") + ":00+09:00");
-        return `<tr><td><strong>${m.match}</strong></td><td>Czechia · ${m.alliance.join(" · ")}</td><td>${fmt(when, "Asia/Seoul")}</td><td>${fmt(when, "Europe/Prague")}</td></tr>`;
-      }).join("");
-    }
+    // FIRST Global Media livestreams by Korean date: a field number, or "main" for the day's main broadcast.
+    const streams = {
+      "2026-10-09": {
+        main: "https://www.youtube.com/watch?v=juiOD0SCK9Q",
+        4: "https://www.youtube.com/watch?v=u9lpqA9azkM",
+      },
+    };
+
+    const countries = {
+      ARU: "Aruba", AUT: "Austria", BHU: "Bhutan", BIZ: "Belize", BUR: "Burkina Faso", CAF: "Central African Rep.",
+      CAY: "Cayman Islands", CHI: "Chile", CHN: "China", COM: "Comoros", CPV: "Cape Verde", CRO: "Croatia",
+      DEN: "Denmark", DOM: "Dominican Rep.", EGY: "Egypt", ESP: "Spain", EST: "Estonia", ETH: "Ethiopia",
+      FSM: "Micronesia", GBR: "Great Britain", GBS: "Guinea-Bissau", GER: "Germany", GHA: "Ghana", GRE: "Greece",
+      HAI: "Haiti", IRI: "Iran", ITA: "Italy", JAM: "Jamaica", KAZ: "Kazakhstan", KOR: "Korea", LAT: "Latvia",
+      LCA: "Saint Lucia", MDA: "Moldova", MGL: "Mongolia", MNE: "Montenegro", MRI: "Mauritius", NEP: "Nepal",
+      NGR: "Nigeria", NIG: "Niger", PAN: "Panama", PER: "Peru", PHI: "Philippines", RSA: "South Africa",
+      SEY: "Seychelles", SRB: "Serbia", SYR: "Syria", TGA: "Tonga", TJK: "Tajikistan", TKM: "Turkmenistan",
+      TPE: "Chinese Taipei", TUN: "Tunisia", TUR: "Türkiye", UGA: "Uganda", USA: "USA", UZB: "Uzbekistan",
+    };
+    const names = codes => codes.map(c => countries[c] || c).join(", ");
+    const fmt = (date, tz, opts) => date.toLocaleString("en-GB", { timeZone: tz, ...opts });
+    const time = { hour: "2-digit", minute: "2-digit" };
+    const other = { blue: "red", red: "blue" };
+    const nextMatch = matches.find(m => new Date(m.kst.replace(" ", "T") + ":00+09:00") > Date.now());
+
+    document.getElementById("schedule-body").innerHTML = matches.map(m => {
+      const when = new Date(m.kst.replace(" ", "T") + ":00+09:00");
+      const day = streams[m.kst.slice(0, 10)] || {};
+      const watch = day[m.field]
+        ? `<a class="watch" href="${day[m.field]}" target="_blank" rel="noopener">Field ${m.field} ↗</a>`
+        : day.main
+          ? `<a class="watch" href="${day.main}" target="_blank" rel="noopener">Main stream ↗</a>`
+          : `<span class="soon">Coming soon</span>`;
+      return `<tr${m === nextMatch ? ' class="next"' : ""}>
+        <td>${fmt(when, "Asia/Seoul", { weekday: "short", day: "numeric", month: "short" })}</td>
+        <td><strong>${m.match}</strong>${m === nextMatch ? ' <span class="next-tag">Next</span>' : ""}</td>
+        <td>#${m.field}</td>
+        <td><span class="dot ${m.alliance}"></span>Czechia, ${names(m.with)}</td>
+        <td><span class="dot ${other[m.alliance]}"></span>${names(m.vs)}</td>
+        <td>${fmt(when, "Asia/Seoul", time)}</td>
+        <td>${fmt(when, "Europe/Prague", time)}</td>
+        <td>${watch}</td>
+      </tr>`;
+    }).join("");
   </script>
 </body>
 </html>
