@@ -246,12 +246,13 @@
       { match: 319, field: 1, kst: "2026-10-10 11:31", alliance: "blue", with: ["FSM", "KOR"], vs: ["UGA", "SRB", "COM"] },
     ];
 
-    // FIRST Global Media livestreams by Korean date: a field number, or "main" for the day's main broadcast.
+    // FIRST Global Media livestreams (YouTube "Live" tab), by Korean date: a field number, or "main" for
+    // the day's main broadcast. Day 1 = Thu 8 Oct, Day 2 = Fri 9 Oct, Day 3 = Sat 10 Oct.
+    const yt = id => `https://www.youtube.com/watch?v=${id}`;
     const streams = {
-      "2026-10-09": {
-        main: "https://www.youtube.com/watch?v=juiOD0SCK9Q",
-        4: "https://www.youtube.com/watch?v=u9lpqA9azkM",
-      },
+      "2026-10-08": { main: yt("2giQLSlMOgo"), 1: yt("OYWoZl6scbM"), 2: yt("jJ5DHNJrpc4"), 3: yt("-jA1YanHcB8"), 4: yt("C7MIYhOdYS4"), 5: yt("rQO7Ml3pYxk") },
+      "2026-10-09": { main: yt("UekLwTOuNUU"), 1: yt("tkQpTnlTcu8"), 2: yt("F_kvVyXWrZU"), 3: yt("YNKPPyYxfJM"), 4: yt("ZkFxxa22V5g"), 5: yt("onEdqqlQjaQ") },
+      "2026-10-10": { main: yt("juiOD0SCK9Q"), 1: yt("jKX6kQnTp7g"), 2: yt("P4tHKmWGoS0"), 3: yt("3H32iaSLciE"), 4: yt("u9lpqA9azkM"), 5: yt("-zWoaHmeZ38") },
     };
 
     const countries = {
