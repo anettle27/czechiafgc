@@ -2,5 +2,5 @@
   "name": "czechiafgc",
   "compatibility_date": "2026-10-01",
   "assets": { "directory": "./public" },
-  "routes": [{ "pattern": "czechiafgc.anetavostra.com", "custom_domain": true }]
+  "routes": [{ "pattern": "global.firstczechia.com", "custom_domain": true }]
 }

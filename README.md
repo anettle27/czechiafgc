@@ -1,6 +1,6 @@
 # Team Czechia · FIRST Global Challenge
 
-Static site for Team Czechia at https://czechiafgc.anetavostra.com. No build step.
+Static site for Team Czechia at https://global.firstczechia.com. No build step.
 
 - `public/index.html` — FGC 2026 (this season only)
 - `public/past/index.html` — past competitions, 2017 onwards

@@ -1,4 +1,4 @@
-# Deploys the site to Cloudflare (czechiafgc.anetavostra.com) on every push to main.
+# Deploys the site to Cloudflare (global.firstczechia.com) on every push to main.
 # Needs the repo secret CLOUDFLARE_API_TOKEN ("Edit Cloudflare Workers" token template).
 name: Deploy to Cloudflare
 
