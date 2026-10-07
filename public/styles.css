@@ -160,6 +160,35 @@ section + section { border-top: 1px solid var(--line); }
 .facts dt { color: var(--muted); font-size: 15px; }
 .facts dd { margin: 0; font-weight: 600; text-align: right; }
 
+/* ---------- How the game works ---------- */
+.game { margin-top: 56px; }
+.game-head { max-width: 760px; margin-bottom: 28px; }
+.game-head h3 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
+.game-head p { color: var(--muted); margin: 0; font-size: 17px; }
+.game-head strong, .steps strong { color: var(--text); font-weight: 600; }
+.pill { display: inline-block; padding: 0 9px; border-radius: 999px; font-weight: 600; font-size: 14px; color: var(--white); }
+.pill.red { background: #C8161D; }
+.pill.blue { background: #2F6FE0; }
+.game-media { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; align-items: start; margin-bottom: 20px; }
+.field-fig { margin: 0; background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+.field-fig img { display: block; width: 100%; height: auto; }
+.field-fig figcaption { padding: 10px 16px; font-size: 13px; color: #4a5568; background: #f3f4f7; }
+.video iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: var(--radius); background: var(--surface); }
+.video-cap { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+.steps { list-style: none; margin: 0 0 20px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.steps li { position: relative; padding: 26px 24px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.step-n { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--red); font: 800 16px var(--display); margin-bottom: 14px; }
+.steps h4 { font: 800 20px/1.15 var(--display); letter-spacing: -0.02em; margin: 0 0 8px; }
+.steps p { margin: 0; color: var(--muted); font-size: 15px; }
+.score-line { padding: 20px 24px; border-radius: var(--radius); border: 1px dashed color-mix(in srgb, var(--white) 28%, transparent); margin-bottom: 20px; }
+.score-line p { margin: 8px 0 0; font: 600 clamp(15px, 1.8vw, 18px)/1.5 var(--display); }
+.rules .card h3 { font-size: 24px; }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ticks li { position: relative; padding-left: 26px; color: var(--muted); font-size: 15px; }
+.ticks li::before { content: ""; position: absolute; left: 0; top: .55em; width: 12px; height: 6px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+.ticks strong { color: var(--text); font-weight: 600; }
+@media (max-width: 820px) { .game-media { grid-template-columns: 1fr; } }
+
 /* ---------- Team ---------- */
 .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .member { padding: 26px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
