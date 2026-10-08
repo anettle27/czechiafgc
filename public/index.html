@@ -33,10 +33,10 @@
       <div class="hero-title">
         <h1><span>Team</span><span class="czechia">Czechia</span></h1>
         <ul class="quick-menu" aria-label="On this page">
+          <li><a href="#schedule">The match schedule</a></li>
           <li><a href="#challenge">The challenge</a></li>
           <li><a href="#season">The 2026 season</a></li>
           <li><a href="#team">The team</a></li>
-          <li><a href="#schedule">The match schedule</a></li>
         </ul>
       </div>
       <p class="lead">The Czech Republic's national robotics team. This October we take our robot to <strong>Incheon, South Korea</strong>, to compete against teams from more than 190 countries.</p>
@@ -53,7 +53,6 @@
       <div class="live" id="live" hidden>Competing now in Incheon</div>
 
       <div class="cta">
-        <a class="btn primary" href="#season">Our 2026 season</a>
         <a class="btn ghost" href="#team">Meet the team</a>
       </div>
     </div>
@@ -61,6 +60,25 @@
   <div class="stripe" aria-hidden="true"></div>
 
   <main>
+    <section id="schedule">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Match schedule</span>
+          <h2>When we play.</h2>
+          <p>All 11 of our ranking matches in Korean time, with Prague time in brackets. Click a field to watch its livestream. Scores and times update automatically from <a href="https://results.first.global/" target="_blank" rel="noopener">results.first.global</a>.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="schedule">
+            <thead>
+              <tr><th scope="col">Match</th><th scope="col">Date</th><th scope="col">Time</th><th scope="col">Field</th><th scope="col">Our alliance</th><th scope="col">Opponents</th><th scope="col">Our score</th></tr>
+            </thead>
+            <tbody id="schedule-body">
+              <tr><td colspan="7" class="empty">The match schedule will be posted here once it's released.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
     <section id="challenge">
       <div class="wrap">
         <div class="section-head">
@@ -147,26 +165,6 @@
             <p>(suppression unit balls × climb multiplier) + partner climbs + extinguisher balls + knockdown bonus + Coopertition bonus</p>
           </div>
 
-          <div class="grid-2 rules">
-            <article class="card">
-              <h3>The robot</h3>
-              <ul class="ticks">
-                <li>Built from the same REV Robotics kit of parts that every country gets</li>
-                <li>Must start each match inside a 50 × 50 × 50 cm cube</li>
-                <li>Can reach out at most 50 cm, in one direction at a time</li>
-                <li>No weight limit, and no extra fasteners beyond what's in the kit</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>The tournament</h3>
-              <ul class="ticks">
-                <li><strong>Ranking matches:</strong> random alliances every match, and each team's lowest score is dropped</li>
-                <li><strong>Playoffs:</strong> the top 24 teams, plus 8 drawn at random, form eight alliances of four</li>
-                <li><strong>Finals:</strong> the top three alliances play each other for gold, silver and bronze</li>
-                <li>Medals also go to the three highest-ranked teams overall</li>
-              </ul>
-            </article>
-          </div>
         </div>
       </div>
     </section>
@@ -233,25 +231,6 @@
       </div>
     </section>
 
-    <section id="schedule">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow">Match schedule</span>
-          <h2>When we play.</h2>
-          <p>All 11 of our ranking matches, who we're allied with, and when to tune in, in Korean local time and Prague time. Times can shift during the event, so check <a href="https://results.first.global/" target="_blank" rel="noopener">results.first.global</a> for the latest.</p>
-        </div>
-        <div class="table-wrap">
-          <table class="schedule">
-            <thead>
-              <tr><th scope="col">Date</th><th scope="col">Match</th><th scope="col">Field</th><th scope="col">Our alliance</th><th scope="col">Opponents</th><th scope="col">Korea (KST)</th><th scope="col">Prague (CEST)</th><th scope="col">Watch</th></tr>
-            </thead>
-            <tbody id="schedule-body">
-              <tr><td colspan="8" class="empty">The match schedule will be posted here once it's released.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
     <section class="follow">
       <div class="wrap">
         <div class="section-head">
@@ -297,20 +276,20 @@
     }
     tick();
 
-    // Ranking matches from results.first.global. Times are Korean local time (KST, UTC+9);
-    // Prague time is worked out automatically.
-    const matches = [
-      { match: 18,  field: 3, kst: "2026-10-08 11:55", alliance: "red",  with: ["TUR", "GHA"], vs: ["TKM", "ESP", "DEN"] },
-      { match: 42,  field: 3, kst: "2026-10-08 14:00", alliance: "red",  with: ["CAY", "IRI"], vs: ["TPE", "TUN", "GRE"] },
-      { match: 70,  field: 2, kst: "2026-10-08 15:20", alliance: "red",  with: ["CRO", "HAI"], vs: ["KAZ", "SYR", "MRI"] },
-      { match: 101, field: 5, kst: "2026-10-08 16:49", alliance: "red",  with: ["EGY", "GER"], vs: ["PHI", "CAF", "EST"] },
-      { match: 134, field: 4, kst: "2026-10-09 09:47", alliance: "blue", with: ["BUR", "ETH"], vs: ["MGL", "PAN", "NIG"] },
-      { match: 159, field: 3, kst: "2026-10-09 10:51", alliance: "blue", with: ["USA", "GBR"], vs: ["MNE", "TGA", "ARU"] },
-      { match: 191, field: 5, kst: "2026-10-09 12:30", alliance: "blue", with: ["NGR", "SEY"], vs: ["LCA", "CHN", "UZB"] },
-      { match: 221, field: 5, kst: "2026-10-09 14:48", alliance: "red",  with: ["CPV", "RSA"], vs: ["BHU", "NEP", "DOM"] },
-      { match: 250, field: 2, kst: "2026-10-09 16:18", alliance: "red",  with: ["ITA", "PER"], vs: ["GBS", "TJK", "MDA"] },
-      { match: 301, field: 1, kst: "2026-10-10 10:43", alliance: "blue", with: ["CHI", "BIZ"], vs: ["JAM", "AUT", "LAT"] },
-      { match: 319, field: 1, kst: "2026-10-10 11:31", alliance: "blue", with: ["FSM", "KOR"], vs: ["UGA", "SRB", "COM"] },
+    // Our ranking matches. Times are Korean local time (KST, UTC+9). This is the fallback; the live
+    // version (times, fields and scores) is loaded from /api/matches, which reads results.first.global.
+    let matches = [
+      { match: 18,  field: 3, kst: "2026-10-08T11:55:00+09:00", alliance: "red",  with: ["TUR", "GHA"], vs: ["TKM", "ESP", "DEN"], score: 52 },
+      { match: 42,  field: 3, kst: "2026-10-08T14:00:00+09:00", alliance: "red",  with: ["CAY", "IRI"], vs: ["TPE", "TUN", "GRE"], score: 165 },
+      { match: 70,  field: 2, kst: "2026-10-08T15:20:00+09:00", alliance: "red",  with: ["CRO", "HAI"], vs: ["KAZ", "SYR", "MRI"], score: 73 },
+      { match: 101, field: 5, kst: "2026-10-08T16:49:00+09:00", alliance: "red",  with: ["EGY", "GER"], vs: ["PHI", "CAF", "EST"], score: 72 },
+      { match: 134, field: 4, kst: "2026-10-09T09:47:00+09:00", alliance: "blue", with: ["BUR", "ETH"], vs: ["MGL", "PAN", "NIG"], score: null },
+      { match: 159, field: 3, kst: "2026-10-09T10:51:00+09:00", alliance: "blue", with: ["USA", "GBR"], vs: ["MNE", "TGA", "ARU"], score: null },
+      { match: 191, field: 5, kst: "2026-10-09T12:30:00+09:00", alliance: "blue", with: ["NGR", "SEY"], vs: ["LCA", "CHN", "UZB"], score: null },
+      { match: 221, field: 5, kst: "2026-10-09T14:48:00+09:00", alliance: "red",  with: ["CPV", "RSA"], vs: ["BHU", "NEP", "DOM"], score: null },
+      { match: 250, field: 2, kst: "2026-10-09T16:18:00+09:00", alliance: "red",  with: ["ITA", "PER"], vs: ["GBS", "TJK", "MDA"], score: null },
+      { match: 301, field: 1, kst: "2026-10-10T10:43:00+09:00", alliance: "blue", with: ["CHI", "BIZ"], vs: ["JAM", "AUT", "LAT"], score: null },
+      { match: 319, field: 1, kst: "2026-10-10T11:31:00+09:00", alliance: "blue", with: ["FSM", "KOR"], vs: ["UGA", "SRB", "COM"], score: null },
     ];
 
     // FIRST Global Media livestreams (YouTube "Live" tab), by Korean date: a field number, or "main" for
@@ -337,27 +316,50 @@
     const fmt = (date, tz, opts) => date.toLocaleString("en-GB", { timeZone: tz, ...opts });
     const time = { hour: "2-digit", minute: "2-digit" };
     const other = { blue: "red", red: "blue" };
-    const nextMatch = matches.find(m => new Date(m.kst.replace(" ", "T") + ":00+09:00") > Date.now());
+    const LIVE_FOR = 10 * 60 * 1000; // a match counts as "live" for its first 10 minutes
 
-    document.getElementById("schedule-body").innerHTML = matches.map(m => {
-      const when = new Date(m.kst.replace(" ", "T") + ":00+09:00");
-      const day = streams[m.kst.slice(0, 10)] || {};
-      const watch = day[m.field]
-        ? `<a class="watch" href="${day[m.field]}" target="_blank" rel="noopener">Field ${m.field} ↗</a>`
-        : day.main
-          ? `<a class="watch" href="${day.main}" target="_blank" rel="noopener">Main stream ↗</a>`
-          : `<span class="soon">Coming soon</span>`;
-      return `<tr${m === nextMatch ? ' class="next"' : ""}>
-        <td>${fmt(when, "Asia/Seoul", { weekday: "short", day: "numeric", month: "short" })}</td>
-        <td><strong>${m.match}</strong>${m === nextMatch ? ' <span class="next-tag">Next</span>' : ""}</td>
-        <td>#${m.field}</td>
-        <td><span class="dot ${m.alliance}"></span>Czechia, ${names(m.with)}</td>
-        <td><span class="dot ${other[m.alliance]}"></span>${names(m.vs)}</td>
-        <td>${fmt(when, "Asia/Seoul", time)}</td>
-        <td>${fmt(when, "Europe/Prague", time)}</td>
-        <td>${watch}</td>
-      </tr>`;
-    }).join("");
+    function renderSchedule() {
+      const now = Date.now();
+      const starts = matches.map(m => Date.parse(m.kst));
+      const live = matches.find((m, i) => now >= starts[i] && now < starts[i] + LIVE_FOR);
+      const next = live ? null : matches.find((m, i) => starts[i] > now);
+
+      document.getElementById("schedule-body").innerHTML = matches.map((m, i) => {
+        const when = new Date(starts[i]);
+        const stream = (streams[fmt(when, "Asia/Seoul", { year: "numeric", month: "2-digit", day: "2-digit" }).split("/").reverse().join("-")] || {})[m.field];
+        const field = stream
+          ? `<a class="watch" href="${stream}" target="_blank" rel="noopener" title="Watch Field ${m.field} live">Field ${m.field} ↗</a>`
+          : `Field ${m.field}`;
+        const tag = m === live ? ' <span class="next-tag live-tag">Live now</span>'
+          : m === next ? ' <span class="next-tag">Next</span>' : "";
+        const score = m.score === null || m.score === undefined ? '<span class="soon">–</span>' : `<strong class="score">${m.score}</strong>`;
+        return `<tr class="${m === live ? "live" : m === next ? "next" : ""}">
+          <td><strong>${m.match}</strong>${tag}</td>
+          <td>${fmt(when, "Asia/Seoul", { weekday: "short", day: "numeric", month: "short" })}</td>
+          <td>${fmt(when, "Asia/Seoul", time)} KST <span class="muted">(${fmt(when, "Europe/Prague", time)} CEST)</span></td>
+          <td>${field}</td>
+          <td><span class="dot ${m.alliance}"></span>Czechia, ${names(m.with)}</td>
+          <td><span class="dot ${other[m.alliance]}"></span>${names(m.vs)}</td>
+          <td>${score}</td>
+        </tr>`;
+      }).join("");
+    }
+
+    async function refreshMatches() {
+      try {
+        const res = await fetch("/api/matches", { cache: "no-store" });
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.matches) && data.matches.length) matches = data.matches;
+        }
+      } catch (e) { /* keep the last known schedule */ }
+      renderSchedule();
+    }
+
+    renderSchedule();
+    refreshMatches();
+    setInterval(refreshMatches, 60 * 1000);
+    setInterval(renderSchedule, 15 * 1000);
   </script>
 </body>
 </html>
