@@ -209,7 +209,18 @@ section + section { border-top: 1px solid var(--line); }
 .schedule td { padding: 14px 20px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
 .schedule tr:last-child td { border-bottom: 0; }
 .schedule td { white-space: nowrap; }
-.schedule td:nth-child(5), .schedule td:nth-child(6) { white-space: normal; min-width: 180px; }
+.schedule td:nth-last-child(2), .schedule td:nth-last-child(3) { white-space: normal; min-width: 180px; }
+.schedule th.day {
+  width: 52px; padding: 0; text-align: center; vertical-align: middle;
+  border-right: 1px solid var(--line);
+  background: color-mix(in srgb, var(--blue) 35%, transparent);
+}
+.schedule th.day span {
+  display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg);
+  font: 800 13px var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--text);
+}
+.schedule tr.day-start td, .schedule tr.day-start th.day { border-top: 2px solid color-mix(in srgb, var(--white) 22%, transparent); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .schedule tr.next td { background: color-mix(in srgb, var(--red) 14%, transparent); }
 .schedule tr.live td { background: color-mix(in srgb, var(--red) 24%, transparent); }
 .live-tag { display: inline-flex; align-items: center; gap: 5px; }

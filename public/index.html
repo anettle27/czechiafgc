@@ -70,7 +70,7 @@
         <div class="table-wrap">
           <table class="schedule">
             <thead>
-              <tr><th scope="col">Match</th><th scope="col">Date</th><th scope="col">Time</th><th scope="col">Field</th><th scope="col">Our alliance</th><th scope="col">Opponents</th><th scope="col">Our score</th></tr>
+              <tr><th scope="col"><span class="visually-hidden">Day</span></th><th scope="col">Match</th><th scope="col">Time</th><th scope="col">Field</th><th scope="col">Our alliance</th><th scope="col">Opponents</th><th scope="col">Our score</th></tr>
             </thead>
             <tbody id="schedule-body">
               <tr><td colspan="7" class="empty">The match schedule will be posted here once it's released.</td></tr>
@@ -333,9 +333,16 @@
         const tag = m === live ? ' <span class="next-tag live-tag">Live now</span>'
           : m === next ? ' <span class="next-tag">Next</span>' : "";
         const score = m.score === null || m.score === undefined ? '<span class="soon">–</span>' : `<strong class="score">${m.score}</strong>`;
-        return `<tr class="${m === live ? "live" : m === next ? "next" : ""}">
+        // One tall day label (Thursday, Friday, Saturday) running alongside that day's matches.
+        const day = fmt(when, "Asia/Seoul", { weekday: "long" });
+        const firstOfDay = i === 0 || fmt(new Date(starts[i - 1]), "Asia/Seoul", { weekday: "long" }) !== day;
+        const dayCount = matches.filter((_, j) => fmt(new Date(starts[j]), "Asia/Seoul", { weekday: "long" }) === day).length;
+        const dayCell = firstOfDay
+          ? `<th scope="rowgroup" rowspan="${dayCount}" class="day"><span>${day}</span></th>`
+          : "";
+        return `<tr class="${m === live ? "live" : m === next ? "next" : ""}${firstOfDay && i ? " day-start" : ""}">
+          ${dayCell}
           <td><strong>${m.match}</strong>${tag}</td>
-          <td>${fmt(when, "Asia/Seoul", { weekday: "short", day: "numeric", month: "short" })}</td>
           <td>${fmt(when, "Asia/Seoul", time)} KST <span class="muted">(${fmt(when, "Europe/Prague", time)} CEST)</span></td>
           <td>${field}</td>
           <td><span class="dot ${m.alliance}"></span>Czechia, ${names(m.with)}</td>
