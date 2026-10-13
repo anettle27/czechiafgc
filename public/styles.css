@@ -202,40 +202,26 @@ section + section { border-top: 1px solid var(--line); }
 .member .role { color: var(--accent); font-weight: 600; font-size: 14px; }
 .member p { color: var(--muted); font-size: 15px; margin: 12px 0 0; }
 
-/* ---------- Schedule ---------- */
-.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.schedule { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 940px; }
-.schedule th { text-align: left; padding: 14px 20px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--line); }
-.schedule td { padding: 14px 20px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
-.schedule tr:last-child td { border-bottom: 0; }
-.schedule td { white-space: nowrap; }
-.schedule td:nth-last-child(2), .schedule td:nth-last-child(3) { white-space: normal; min-width: 180px; }
-.schedule th.day {
-  width: 52px; padding: 0; text-align: center; vertical-align: middle;
-  border-right: 1px solid var(--line);
-  background: color-mix(in srgb, var(--blue) 35%, transparent);
+/* ---------- Madrid 2027 ---------- */
+.madrid {
+  --es-red: #C60B1E;
+  --es-gold: #FFC400;
+  background:
+    radial-gradient(700px 420px at 100% 0%, color-mix(in srgb, var(--es-gold) 16%, transparent), transparent 70%),
+    radial-gradient(600px 420px at 0% 100%, color-mix(in srgb, var(--es-red) 22%, transparent), transparent 70%);
 }
-.schedule th.day span {
-  display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg);
-  font: 800 13px var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--text);
+.madrid .eyebrow { color: var(--es-gold); }
+.madrid-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 36px; align-items: center; }
+.madrid-title { font-size: clamp(64px, 11vw, 140px); font-weight: 900; line-height: .9; letter-spacing: -0.04em; margin: 14px 0 22px; }
+.madrid-title span { display: block; }
+.madrid-title .year {
+  background: linear-gradient(180deg, var(--es-red) 0 25%, var(--es-gold) 25% 75%, var(--es-red) 75% 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.schedule tr.day-start td, .schedule tr.day-start th.day { border-top: 2px solid color-mix(in srgb, var(--white) 22%, transparent); }
-.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.schedule tr.next td { background: color-mix(in srgb, var(--red) 14%, transparent); }
-.schedule tr.live td { background: color-mix(in srgb, var(--red) 24%, transparent); }
-.live-tag { display: inline-flex; align-items: center; gap: 5px; }
-.live-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--white); animation: pulse 1.4s infinite; }
-.schedule .muted { color: var(--muted); }
-.schedule .score { font: 800 18px var(--display); }
-.next-tag { margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: var(--red); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
-.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }
-.dot.red { background: #FF4D52; }
-.dot.blue { background: #4C8DFF; }
-.watch { color: var(--accent); font-weight: 600; text-decoration: none; }
-.watch:hover { text-decoration: underline; }
-.soon { color: var(--muted); font-size: 14px; }
-.section-head p a { color: var(--text); }
-.schedule td.empty { text-align: center; color: var(--muted); padding: 36px 20px; }
+.madrid-copy > p { color: var(--muted); margin: 0 0 20px; font-size: 17px; }
+.madrid .facts { margin-bottom: 18px; }
+.small-note { font-size: 14px !important; }
+@media (max-width: 860px) { .madrid-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Follow ---------- */
 .follow { text-align: center; }
@@ -290,3 +276,5 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   .season .body { padding: 24px; }
 }
 .note { color: var(--muted); font-size: 14px; margin-top: 28px; }
+.season[id] { scroll-margin-top: 80px; }
+.season p a { color: var(--text); }
